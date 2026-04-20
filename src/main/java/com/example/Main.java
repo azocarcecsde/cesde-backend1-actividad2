@@ -1,42 +1,24 @@
 package com.example;
-
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-     
-        CamionDeReparto camion = new CamionDeReparto("CAM-001", 100, 5000, true);
-       
-        BuqueCarga buque = new BuqueCarga("BUQ-999", 100, 50000, 50);
-
-        System.out.println("=== 2. Prueba de Fuego (Validación) ===");
-        System.out.println("Intentando asignar -20 de combustible al camión...");
-        camion.setCombustible(-20);
-        System.out.println("Combustible actual del camión: " + camion.getCombustible()); 
         
-        camion.setCombustible(100); 
+        // Crea un ArrayList de EspacioCultural
+        ArrayList<EspacioCultural> lugares = new ArrayList<>();
 
-        System.out.println("\n=== 3. Demostración de Polimorfismo ===");
-        ArrayList<Transporte> flota = new ArrayList<>();
-        flota.add(camion);
-        flota.add(buque);
+        // Agrega una instancia de cada lugar
+        lugares.add(new JardinBotanico());
+        lugares.add(new MuseoDeAntioquia());
+        lugares.add(new ParqueExplora());
 
-        
-        for (Transporte vehiculo : flota) {
-            System.out.println("Vehículo: " + vehiculo.getIdTransporte() + " | Combustible inicial: " + vehiculo.getCombustible());
-            
-            vehiculo.viajar(100); 
-            
-            System.out.println("Combustible tras viajar 100km: " + vehiculo.getCombustible());
-            System.out.println("------------------------------------------------");
+        // Usa un ciclo (for-each) para mostrar la información de todos los lugares
+        for (EspacioCultural lugar : lugares) {
+            System.out.println("Lugar: " + lugar.getClass().getSimpleName());
+            lugar.mostrarHorario();
+            System.out.println("Requisito: " + lugar.obtenerRequisitoEntrada());
+            lugar.realizarActividadPrincipal();
+            System.out.println("--------------------------------------------------");
         }
-        
-       
-        System.out.println("\n=== Prueba de métodos propios ===");
-        buque.mostrarDatos();
-        buque.atracarEnPuerto();
-
-
-
     }
 }
